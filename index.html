@@ -10,7 +10,7 @@
 <meta property="og:title" content="Personalised Gift Finder — My 1st Years">
 <meta property="og:description" content="Answer 3 quick questions and get personalised gift recommendations for babies and children — from one of the UK's most loved personalised gift brands.">
 <meta property="og:image" content="https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/cache/6d8e41e98cbb1c031bf3bc2f71c0a169/5/0/50112562teddy-bear-plush-toy-a.webp">
-<meta property="og:url" content="https://waddellb-oss.github.io/my1styears-gift-finder/">
+<meta property="og:url" content="https://yourusername.github.io/my1styears-gift-finder">
 <meta name="description" content="Answer 3 quick questions and get personalised gift recommendations for babies and children — from one of the UK's most loved personalised gift brands.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -21,10 +21,40 @@ body {
   font-family: 'DM Sans', sans-serif;
   background: #FAF8F5;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  margin: 0;
+}
+
+/* ── MOCK SITE ── */
+.site-bar {
+  background: #5BB5A2; color: white; text-align: center;
+  font-size: 0.72rem; letter-spacing: 0.08em; padding: 9px 20px; font-weight: 500;
+}
+.site-header {
+  background: white; border-bottom: 1px solid #EDE8E0;
+  padding: 14px 40px; display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo-circle {
+  width: 42px; height: 42px; background: #5BB5A2; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+}
+.site-logo-my  { font-size: 0.85rem; font-weight: 500; line-height: 1; }
+.site-logo-sub { font-size: 0.44rem; font-weight: 300; letter-spacing: 0.06em; line-height: 1.2; }
+.site-nav { display: flex; gap: 28px; }
+.site-nav a { font-size: 0.8rem; color: #3A3530; text-decoration: none; }
+.site-page { padding: 40px; }
+.site-page h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #3A3530; margin-bottom: 20px; }
+.mock-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.mock-card { background: #EDE8E0; border-radius: 8px; height: 220px; }
+.mock-card-label { background: #E0D9D0; height: 10px; border-radius: 4px; margin: 10px 10px 6px; }
+.mock-card-label.short { width: 60%; }
+
+/* ── OVERLAY ── */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(46,42,38,0.5);
+  backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; z-index: 100;
 }
 
 /* ── CARD ── */
@@ -33,9 +63,13 @@ body {
   border-radius: 16px;
   width: 100%;
   max-width: 420px;
+  max-height: 92vh;
+  overflow-y: auto;
+  scrollbar-width: none;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(43,38,34,0.12);
 }
+.card::-webkit-scrollbar { display: none; }
 
 /* ── HEADER ── */
 .card-head {
@@ -223,6 +257,24 @@ body {
 </head>
 <body>
 
+<!-- Mock site background -->
+<div class="site-bar">Free Luxury Gift Box on all orders &nbsp;·&nbsp; Next Day Delivery available &nbsp;·&nbsp; Personalisation, it's kind of our thing</div>
+<div class="site-header">
+  <div class="site-logo-circle"><span class="site-logo-my">MY</span><span class="site-logo-sub">1st years</span></div>
+  <div class="site-nav"><a href="#">Baby</a><a href="#">Kids</a><a href="#">Gift Sets</a><a href="#">Occasions</a><a href="#">Sale</a></div>
+</div>
+<div class="site-page">
+  <h2>Personalised Gifts for Babies &amp; Kids</h2>
+  <div class="mock-grid">
+    <div class="mock-card"><div class="mock-card-label"></div><div class="mock-card-label short"></div></div>
+    <div class="mock-card"><div class="mock-card-label"></div><div class="mock-card-label short"></div></div>
+    <div class="mock-card"><div class="mock-card-label"></div><div class="mock-card-label short"></div></div>
+    <div class="mock-card"><div class="mock-card-label"></div><div class="mock-card-label short"></div></div>
+  </div>
+</div>
+
+<!-- Overlay with gift finder card -->
+<div class="overlay">
 <div class="card">
 
   <div class="card-head">
@@ -301,7 +353,8 @@ body {
     </div>
 
   </div>
-</div>
+</div><!-- /card -->
+</div><!-- /overlay -->
 
 <script>
 var answers = {};
