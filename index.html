@@ -64,12 +64,19 @@ body {
   width: 100%;
   max-width: 420px;
   max-height: 92vh;
-  overflow-y: auto;
-  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(43,38,34,0.12);
 }
-.card::-webkit-scrollbar { display: none; }
+.card-body {
+  padding: 14px 20px 20px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  flex: 1;
+  min-height: 0;
+}
+.card-body::-webkit-scrollbar { display: none; }
 
 /* ── HEADER ── */
 .card-head {
@@ -102,8 +109,7 @@ body {
   font-weight: 500;
 }
 
-/* ── BODY ── */
-.card-body { padding: 14px 20px 20px; }
+
 
 /* ── STEPS ── */
 .step { display: none; }
@@ -124,18 +130,22 @@ body {
 }
 
 /* ── OPTIONS ── */
-.options { display: flex; flex-wrap: wrap; gap: 8px; }
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.options.flex { display: flex; flex-wrap: wrap; gap: 8px; }
 .opt {
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
   background: #FAF8F5; border: 1.5px solid #E8E2D8;
-  border-radius: 50px; padding: 8px 15px;
+  border-radius: 50px; padding: 10px 12px;
   cursor: pointer; font-size: 0.8rem; font-weight: 400;
-  color: #3A3530; transition: all 0.18s; white-space: nowrap;
-  font-family: 'DM Sans', sans-serif;
+  color: #3A3530; transition: all 0.18s;
+  font-family: 'DM Sans', sans-serif; text-align: center;
+  -webkit-appearance: none; appearance: none;
 }
+/* Grid opts fill their column; flex opts size to content */
+.options:not(.flex) .opt { width: 100%; }
 .opt:hover { border-color: #5BB5A2; background: #F0FAF8; }
 .opt.sel   { background: #5BB5A2; border-color: #5BB5A2; color: white; }
-.opt-icon  { font-size: 0.95rem; }
+.opt-icon  { font-size: 0.95rem; flex-shrink: 0; }
 
 /* ── RESULTS ── */
 #step-results { display: none; }
@@ -291,10 +301,11 @@ body {
     <div class="step active" id="step-0">
       <div class="step-q">Who is the gift for?</div>
       <div class="options">
-        <button class="opt" data-step="0" data-value="newborn"><span class="opt-icon">🍼</span> New Baby <small style="opacity:.5;font-size:.68rem;margin-left:1px">0–12m</small></button>
-        <button class="opt" data-step="0" data-value="toddler"><span class="opt-icon">🧸</span> Toddler <small style="opacity:.5;font-size:.68rem;margin-left:1px">1–3 yrs</small></button>
-        <button class="opt" data-step="0" data-value="child"><span class="opt-icon">⭐</span> Little One <small style="opacity:.5;font-size:.68rem;margin-left:1px">3–7 yrs</small></button>
-        <button class="opt" data-step="0" data-value="older"><span class="opt-icon">🎒</span> Older Child <small style="opacity:.5;font-size:.68rem;margin-left:1px">7+ yrs</small></button>
+        <button class="opt" data-step="0" data-value="newborn" style="grid-column:1/-1">Newborn <small style="opacity:.5;font-size:.68rem;margin-left:2px">0–3m</small></button>
+        <button class="opt" data-step="0" data-value="baby">Baby <small style="opacity:.5;font-size:.68rem;margin-left:2px">4–12m</small></button>
+        <button class="opt" data-step="0" data-value="toddler">Toddler <small style="opacity:.5;font-size:.68rem;margin-left:2px">1–2 yrs</small></button>
+        <button class="opt" data-step="0" data-value="child">Little One <small style="opacity:.5;font-size:.68rem;margin-left:2px">3–5 yrs</small></button>
+        <button class="opt" data-step="0" data-value="older">Big Kid <small style="opacity:.5;font-size:.68rem;margin-left:2px">6+ yrs</small></button>
       </div>
     </div>
 
@@ -302,21 +313,21 @@ body {
     <div class="step" id="step-1">
       <button class="btn-back" onclick="goToStep(0)">← Back</button>
       <div class="step-q">What's your relationship to them?</div>
-      <div class="options">
-        <button class="opt" data-step="1" data-value="parent"><span class="opt-icon">💛</span> Parent</button>
-        <button class="opt" data-step="1" data-value="grandparent"><span class="opt-icon">🌸</span> Grandparent</button>
-        <button class="opt" data-step="1" data-value="aunt-uncle"><span class="opt-icon">🎁</span> Aunt / Uncle</button>
-        <button class="opt" data-step="1" data-value="godparent"><span class="opt-icon">✨</span> Godparent</button>
-        <button class="opt" data-step="1" data-value="friend"><span class="opt-icon">🫂</span> Friend</button>
-        <button class="opt" data-step="1" data-value="other"><span class="opt-icon">💝</span> Other</button>
+      <div class="options flex">
+        <button class="opt" data-step="1" data-value="parent">Parent</button>
+        <button class="opt" data-step="1" data-value="grandparent">Grandparent</button>
+        <button class="opt" data-step="1" data-value="aunt-uncle">Aunt / Uncle</button>
+        <button class="opt" data-step="1" data-value="godparent">Godparent</button>
+        <button class="opt" data-step="1" data-value="friend">Friend</button>
+        <button class="opt" data-step="1" data-value="other">Other</button>
       </div>
     </div>
 
-    <!-- Step 3 -->
+    <!-- Step 3: Occasion -->
     <div class="step" id="step-2">
       <button class="btn-back" onclick="goToStep(1)">← Back</button>
       <div class="step-q">What's the occasion?</div>
-      <div class="options" id="occasionOptions"></div>
+      <div class="options flex" id="occasionOptions"></div>
     </div>
 
     <!-- Results -->
@@ -346,7 +357,7 @@ body {
         <p id="emailPanelSub">We'll send personalised gift ideas, seasonal edits and exclusive offers to your inbox.</p>
         <input class="email-inp" type="email" id="emailInp" placeholder="Your email address">
         <button class="email-sub" onclick="submitEmail()">Get Gift Ideas</button>
-        <div id="emailConfirm">🎁 You're on the list! Something lovely is on its way.</div>
+        <div id="emailConfirm">You're on the list! Something lovely is on its way.</div>
       </div>
 
       <span class="restart-link" onclick="restart()">Not quite right? Start again</span>
@@ -366,34 +377,47 @@ var occasionsByAge = {
     { v:'christmas',   icon:'🎄', label:'Christmas' },
     { v:'just-because',icon:'🌿', label:'Just Because' }
   ],
+  baby: [
+    { v:'1st-birthday',  icon:'🎂', label:'1st Birthday' },
+    { v:'christening',   icon:'✝️', label:'Christening' },
+    { v:'christmas',     icon:'🎄', label:'Christmas' },
+    { v:'just-because',  icon:'🌿', label:'Just Because' }
+  ],
   toddler: [
-    { v:'birthday',    icon:'🎂', label:'Birthday' },
-    { v:'christmas',   icon:'🎄', label:'Christmas' },
-    { v:'just-because',icon:'🌿', label:'Just Because' }
+    { v:'birthday',     icon:'🎂', label:'Birthday' },
+    { v:'christmas',    icon:'🎄', label:'Christmas' },
+    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
+    { v:'just-because', icon:'🌿', label:'Just Because' }
   ],
   child: [
-    { v:'birthday',    icon:'🎂', label:'Birthday' },
-    { v:'christmas',   icon:'🎄', label:'Christmas' },
-    { v:'just-because',icon:'🌿', label:'Just Because' }
+    { v:'birthday',     icon:'🎂', label:'Birthday' },
+    { v:'christmas',    icon:'🎄', label:'Christmas' },
+    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
+    { v:'just-because', icon:'🌿', label:'Just Because' }
   ],
   older: [
-    { v:'birthday',    icon:'🎂', label:'Birthday' },
-    { v:'christmas',   icon:'🎄', label:'Christmas' },
-    { v:'just-because',icon:'🌿', label:'Just Because' }
+    { v:'birthday',     icon:'🎂', label:'Birthday' },
+    { v:'christmas',    icon:'🎄', label:'Christmas' },
+    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
+    { v:'just-because', icon:'🌿', label:'Just Because' }
   ]
 };
 
 // Age labels for context line
 var ageLabels = {
-  'newborn': 'a new baby',
+  'newborn': 'a newborn',
+  'baby':    'a baby',
   'toddler': 'a toddler',
   'child':   'a little one',
-  'older':   'an older child'
+  'older':   'a big kid'
 };
 
 // Occasion labels for context line
 var occasionLabels = {
   'new-arrival':  'new arrival',
+  'new-sibling':  'new sibling',
+  '1st-birthday': '1st birthday',
+  'christening':  'christening',
   'birthday':     'birthday',
   'christmas':    'Christmas',
   'just-because': 'just because'
@@ -422,24 +446,116 @@ var relationshipWeights = {
 var popularTags = { low: 'Best Seller', mid: 'Luxury Keepsake', high: 'Showstopper' };
 
 var catalogue = [
-  { name:'Classic Teddy Bear',          tag:'Best Seller',     price:'£29',  tier:'low',  emoji:'🧸', bg:'#F5EEE8', url:'https://www.my1styears.com/personalised-classic-teddy-bear-plush-toy.html',                           ages:['newborn','toddler','child'],  occasions:['new-arrival','birthday','just-because','christmas'] },
-  { name:'Ditsy Print Mini Backpack',   tag:'Bestseller',      price:'£23',  tier:'low',  emoji:'🌸', bg:'#F5EBF0', url:'https://www.my1styears.com/personalised-ditsy-print-mini-backpack.html',                              ages:['toddler','child'],            occasions:['birthday','christmas','just-because'] },
-  { name:'Transport Mini Backpack',     tag:'Boys Favourite',  price:'£24',  tier:'low',  emoji:'🚙', bg:'#EBF0F5', url:'https://www.my1styears.com/personalised-mini-transport-print-backpack.html',                          ages:['toddler','child'],            occasions:['birthday','christmas','just-because'] },
-  { name:'Teddy Bear Hooded Towel',     tag:'New In',          price:'£25',  tier:'low',  emoji:'🛁', bg:'#EBF4F2', url:'https://www.my1styears.com/personalised-teddy-bear-hooded-towel.html',                                ages:['newborn','toddler'],          occasions:['new-arrival','birthday','christmas','just-because'] },
-  { name:'Grey Quilted Backpack',       tag:'Most Loved',      price:'£30',  tier:'mid',  emoji:'🎒', bg:'#EEEEEE', url:'https://www.my1styears.com/personalised-grey-quilted-medium-backpack.html',                           ages:['child','older'],              occasions:['birthday','christmas','just-because'] },
-  { name:'Bluey Backpack',              tag:'Licensed',        price:'£35',  tier:'mid',  emoji:'🐾', bg:'#E8F0F8', url:'https://www.my1styears.com/personalised-bluey-backpack.html',                                         ages:['toddler','child'],            occasions:['birthday','christmas','just-because'] },
-  { name:'Personalised Robe & Towel Set', tag:'Gift Set',      price:'£44',  tier:'mid',  emoji:'🩷', bg:'#F5EBF2', url:'https://www.my1styears.com/personalised-borg-robe-and-towel-set.html',                                ages:['newborn','toddler'],          occasions:['new-arrival','birthday','christmas','just-because'] },
-  { name:'Embroidered Memory Box',      tag:'Keepsake',        price:'£44',  tier:'mid',  emoji:'💌', bg:'#F4F0E8', url:'https://www.my1styears.com/personalised-memory-box.html',                                              ages:['newborn','toddler'],          occasions:['new-arrival','birthday','christmas'] },
-  { name:'Merrythought Teddy Bear',     tag:'Luxury Keepsake', price:'£135', tier:'high', emoji:'🐻', bg:'#F5F0E8', url:'https://www.my1styears.com/personalised-merrythought-x-my-first-bear-gift-set.html',                  ages:['newborn','toddler','child'],  occasions:['new-arrival','birthday','christmas','just-because'] },
-  { name:'Biscuit Bear Toy Box',        tag:'Furniture',       price:'£130', tier:'high', emoji:'📦', bg:'#F0EEE8', url:'https://www.my1styears.com/personalised-biscuit-bear-white-toy-box-fscr.html',                        ages:['toddler','child'],            occasions:['birthday','christmas','just-because','new-arrival'] },
-  { name:'Teddy Bear Night-Time Set',   tag:'Gift Set',        price:'£95',  tier:'high', emoji:'🌙', bg:'#EEE8F5', url:'https://www.my1styears.com/personalised-teddy-bear-night-time-splash-snuggle-cuddle-gift-set.html',    ages:['newborn','toddler'],          occasions:['new-arrival','birthday','christmas'] },
-  { name:'Best of Teddy Bear Gift Set', tag:'Showstopper',     price:'£125', tier:'high', emoji:'✨', bg:'#F5F0E8', url:'https://www.my1styears.com/personalised-ultimate-teddy-bear-gift-set.html',                           ages:['newborn','toddler','child'],  occasions:['new-arrival','birthday','christmas'] }
+  // ── LOW TIER (under £30) ──
+  { name:'Classic Teddy Bear',              tag:'Best Seller',      price:'£29', tier:'low',  emoji:'🧸', bg:'#F5EEE8',
+    ages:['newborn','baby','toddler','child'],        occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/personalised-classic-teddy-bear-plush-toy.html' },
+  { name:'Grey Hooded Fleece Robe',         tag:'Wardrobe Staple',  price:'£25', tier:'low',  emoji:'🩶', bg:'#EEEEEE',
+    ages:['newborn','baby','toddler','child','older'], occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-grey-hooded-fleece-robe.html' },
+  { name:'Penguin Fleece Robe',             tag:'Fan Favourite',    price:'£32', tier:'low',  emoji:'🐧', bg:'#EBF0F5',
+    ages:['newborn','baby','toddler','child','older'], occasions:['birthday','christmas','just-because','new-arrival'],
+    url:'https://www.my1styears.com/personalised-penguin-fleece-robe.html' },
+  { name:'Welly Boots',                     tag:'Personalised',     price:'£28', tier:'low',  emoji:'🥾', bg:'#EEF5EE',
+    ages:['toddler','child','older'],          occasions:['birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/personalised-pink-spot-welly-boots.html' },
+  { name:'Dinosaur Pencil Case',            tag:'School Essential', price:'£17', tier:'low',  emoji:'✏️', bg:'#EEF5EE',
+    ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/back-to-school/backpacks.html' },
+  { name:'Ditsy Print Mini Backpack',       tag:'Bestseller',       price:'£23', tier:'low',  emoji:'🌸', bg:'#F5EBF0',
+    ages:['toddler','child'],                  occasions:['birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-ditsy-print-mini-backpack.html' },
+  { name:'Dinosaur Mini Backpack',          tag:'Boys Favourite',   price:'£28', tier:'low',  emoji:'🦕', bg:'#EEF5EE',
+    ages:['toddler','child','older'],          occasions:['birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-dinosaur-print-mini-backpack.html' },
+  { name:'Teddy Bear Hooded Towel',         tag:'New In',           price:'£25', tier:'low',  emoji:'🛁', bg:'#EBF4F2',
+    ages:['newborn','baby','toddler'],         occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-teddy-bear-hooded-towel.html' },
+  { name:'Flower Fleece Robe',              tag:'New In',           price:'£27', tier:'low',  emoji:'🌸', bg:'#F5EBF0',
+    ages:['newborn','baby','toddler','child'], occasions:['birthday','christmas','just-because','new-arrival'],
+    url:'https://www.my1styears.com/personalised-flower-fleece-robe.html' },
+  { name:'Personalised Water Bottle',       tag:'School Essential', price:'£23', tier:'low',  emoji:'💧', bg:'#EBF4F2',
+    ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/kids/accessories/water-bottles.html' },
+  { name:'Cellular Baby Blanket',           tag:'Keepsake',         price:'£19', tier:'low',  emoji:'🌿', bg:'#F4F0E8',
+    ages:['newborn','baby'],                   occasions:['new-arrival','christening','1st-birthday','just-because'],
+    url:'https://www.my1styears.com/personalised-white-cellular-blanket.html' },
+  { name:'Home From Hospital Gift Set',     tag:'New Arrival',      price:'£29', tier:'low',  emoji:'🏠', bg:'#F0F4F0',
+    ages:['newborn'],                          occasions:['new-arrival'],
+    url:'https://www.my1styears.com/personalised-home-from-the-hospital-blue-giraffe-gift-set.html' },
+
+  // ── MID TIER (£30–£65) ──
+  { name:'Reindeer Fleece Robe',            tag:'Christmas Pick',   price:'£31', tier:'mid',  emoji:'🦌', bg:'#F5F0E8',
+    ages:['newborn','baby','toddler','child','older'], occasions:['christmas'],
+    url:'https://www.my1styears.com/personalised-reindeer-robe-with-red-nose.html' },
+  { name:'Grey Quilted Backpack',           tag:'Most Loved',       price:'£30', tier:'mid',  emoji:'🎒', bg:'#EEEEEE',
+    ages:['child','older'],                    occasions:['birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-grey-quilted-medium-backpack.html' },
+  { name:'Bluey Backpack',                  tag:'Licensed',         price:'£35', tier:'mid',  emoji:'🐾', bg:'#E8F0F8',
+    ages:['toddler','child'],                  occasions:['birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-bluey-backpack.html' },
+  { name:'Large Graffiti Backpack',         tag:'Cool Kid',         price:'£43', tier:'mid',  emoji:'🎨', bg:'#F0EBF5',
+    ages:['child','older'],                    occasions:['birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/back-to-school/backpacks/medium-backpacks.html' },
+  { name:'Back to School Starter Set',      tag:'Gift Set',         price:'£55', tier:'mid',  emoji:'🏫', bg:'#EEF5F0',
+    ages:['child','older'],                    occasions:['birthday','just-because'],
+    url:'https://www.my1styears.com/back-to-school/shop-by-product/back-to-school-sets.html' },
+  { name:'Robe & Towel Gift Set',           tag:'Gift Set',         price:'£44', tier:'mid',  emoji:'🩷', bg:'#F5EBF2',
+    ages:['newborn','baby','toddler'],         occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-borg-robe-and-towel-set.html' },
+  { name:'Embroidered Memory Box',          tag:'Keepsake',         price:'£44', tier:'mid',  emoji:'💌', bg:'#F4F0E8',
+    ages:['newborn','baby','toddler'],         occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas'],
+    url:'https://www.my1styears.com/personalised-memory-box.html' },
+  { name:'Christmas Pyjamas & Robe Set',    tag:'Christmas Set',    price:'£60', tier:'mid',  emoji:'🎄', bg:'#EEF5EE',
+    ages:['newborn','baby','toddler','child','older'], occasions:['christmas'],
+    url:'https://www.my1styears.com/personalised-christmas-pyjamas-robe-set.html' },
+  { name:'Safari Print Welly Boots',        tag:'Personalised',     price:'£27', tier:'mid',  emoji:'🦒', bg:'#F5F2E8',
+    ages:['toddler','child'],                  occasions:['birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/personalised-pink-safari-print-welly-boots.html' },
+  { name:'Wooden Alphabet Abacus',          tag:'Educational Toy',  price:'£46', tier:'mid',  emoji:'🔤', bg:'#F5F0E8',
+    ages:['baby','toddler','child'],           occasions:['1st-birthday','birthday','just-because'],
+    url:'https://www.my1styears.com/personalised-wooden-alphabet-abacus-toy.html' },
+  { name:'Christening Day Keepsake Box',    tag:'Christening Gift', price:'£44', tier:'mid',  emoji:'✝️', bg:'#F4F0E8',
+    ages:['newborn','baby'],                   occasions:['christening'],
+    url:'https://www.my1styears.com/personalised-wooden-christening-day-keepsake-box.html' },
+  { name:'Big & Little Sibling Robe Set',   tag:'New Sibling Gift', price:'£60', tier:'mid',  emoji:'🩷', bg:'#F5EBF0',
+    ages:['baby','toddler','child'],           occasions:['new-sibling'],
+    url:'https://www.my1styears.com/personalised-big-sibling-little-sibling-fleece-robe-gift-set.html' },
+  { name:'Matching Blue Sibling Robe Set',  tag:'New Sibling Gift', price:'£55', tier:'mid',  emoji:'🩵', bg:'#EBF0F5',
+    ages:['baby','toddler','child'],           occasions:['new-sibling'],
+    url:'https://www.my1styears.com/matching-blue-sibling-robe-set.html' },
+
+  // ── HIGH TIER (£65+) ──
+  { name:'Teddy Bear Night-Time Set',       tag:'Gift Set',         price:'£95',  tier:'high', emoji:'🌙', bg:'#EEE8F5',
+    ages:['newborn','baby','toddler'],         occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas'],
+    url:'https://www.my1styears.com/personalised-teddy-bear-night-time-splash-snuggle-cuddle-gift-set.html' },
+  { name:'Best of Teddy Bear Gift Set',     tag:'Showstopper',      price:'£125', tier:'high', emoji:'✨', bg:'#F5F0E8',
+    ages:['newborn','baby','toddler','child'], occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas'],
+    url:'https://www.my1styears.com/personalised-ultimate-teddy-bear-gift-set.html' },
+  { name:'Merrythought Teddy Bear',         tag:'Luxury Keepsake',  price:'£135', tier:'high', emoji:'🐻', bg:'#F5F0E8',
+    ages:['newborn','baby','toddler','child'], occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
+    url:'https://www.my1styears.com/personalised-merrythought-x-my-first-bear-gift-set.html' },
+  { name:'Biscuit Bear Toy Box',            tag:'Furniture',        price:'£130', tier:'high', emoji:'📦', bg:'#F0EEE8',
+    ages:['toddler','child'],                  occasions:['birthday','christmas','just-because','new-arrival','new-sibling'],
+    url:'https://www.my1styears.com/personalised-biscuit-bear-white-toy-box-fscr.html' },
+  { name:'Ultimate Back to School Set',     tag:'Showstopper',      price:'£85',  tier:'high', emoji:'🎒', bg:'#EEF5F0',
+    ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
+    url:'https://www.my1styears.com/back-to-school/shop-by-product/back-to-school-sets.html' },
+  { name:'Silver Engraved Baby Bangle',     tag:'Keepsake Jewellery', price:'£70', tier:'high', emoji:'💍', bg:'#F5F0E8',
+    ages:['newborn','baby'],                   occasions:['christening','new-arrival','1st-birthday'],
+    url:'https://www.my1styears.com/silver-engraved-baby-keepsake-bangle.html' },
+  { name:'New Mama & Baby Hospital Set',    tag:'New Arrival',      price:'£130', tier:'high', emoji:'🌟', bg:'#F5F0E8',
+    ages:['newborn'],                          occasions:['new-arrival'],
+    url:'https://www.my1styears.com/personalised-new-mama-baby-hospital-bag-gift-set.html' },
 ];
 
+
+
 function setProgress(step) {
-  document.getElementById('progressFill').style.width = ((step / 3) * 100) + '%';
+  var total = answers[0] === 'newborn' ? 2 : 3;
+  document.getElementById('progressFill').style.width = ((step / total) * 100) + '%';
   document.getElementById('progressLabel').textContent =
-    step < 3 ? 'Step ' + (step + 1) + ' of 3' : 'Step 3 of 3';
+    step < total ? 'Step ' + (step + 1) + ' of ' + total : 'Your personalised picks';
 }
 
 function goToStep(n) {
@@ -458,26 +574,40 @@ function buildOccasions(age) {
     b.className = 'opt';
     b.setAttribute('data-step', '2');
     b.setAttribute('data-value', o.v);
-    b.innerHTML = '<span class="opt-icon">' + o.icon + '</span> ' + o.label;
+    b.innerHTML = o.label;
     c.appendChild(b);
   });
 }
 
 function pickTier(tier) {
-  var age = answers[0], occ = answers[2], rel = answers[1];
+  var age = answers[0], rel = answers[1], occ = answers[2];
   var weights = relationshipWeights[rel] || {};
-  return catalogue
+  var results = catalogue
     .filter(function(p) { return p.tier === tier; })
+    .filter(function(p) {
+      // Hard exclusion: must match at least one of age OR occasion
+      var ageMatch = p.ages.indexOf(age) > -1;
+      var occMatch = p.occasions.indexOf(occ) > -1;
+      return ageMatch || occMatch;
+    })
     .map(function(p) {
       var s = 0;
-      if (p.ages.indexOf(age) > -1) s += 2;
-      if (p.occasions.indexOf(occ) > -1) s += 1;
-      if (weights[p.tag]) s += weights[p.tag];
+      if (p.ages.indexOf(age) > -1)      s += 4; // stronger age weight
+      if (p.occasions.indexOf(occ) > -1) s += 3; // stronger occasion weight
+      if (weights[p.tag])                s += weights[p.tag];
       return { p: p, s: s };
     })
     .sort(function(a, b) { return b.s - a.s; })
     .slice(0, 2)
     .map(function(x) { return x.p; });
+
+  // Fallback: if exclusion filtered too aggressively, loosen to age-only match
+  if (results.length < 2) {
+    results = catalogue
+      .filter(function(p) { return p.tier === tier && p.ages.indexOf(age) > -1; })
+      .slice(0, 2);
+  }
+  return results;
 }
 
 function renderCards(products, gridId, tier) {
@@ -527,7 +657,6 @@ function showResults() {
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('progressLabel').textContent = 'Your personalised picks';
 
-  // Curated context line
   var age = answers[0], occ = answers[2];
   var ageLabel = ageLabels[age] || 'them';
   var occLabel = occasionLabels[occ] || '';
@@ -542,8 +671,8 @@ function showResults() {
   document.getElementById('resultsSub').innerHTML = line;
 
   // Personalised email panel copy
-  var occ2 = occasionLabels[occ] || 'gift';
-  var ageShort = { newborn:'newborns', toddler:'toddlers', child:'little ones', older:'older children' }[age] || 'little ones';
+  var occ2 = occasionLabels[answers[2]] || 'gift';
+  var ageShort = { newborn:'newborns', baby:'babies', toddler:'toddlers', child:'little ones', older:'big kids' }[age] || 'little ones';
   document.getElementById('emailPanelSub').textContent =
     'We\'ll send you ' + occ2 + ' gift ideas for ' + ageShort + ', seasonal edits and exclusive offers.';
   document.getElementById('emailTopTitle').textContent = 'More ' + occ2 + ' gift ideas in your inbox';
@@ -580,10 +709,11 @@ function restart() {
 document.querySelector('.card').addEventListener('click', function(e) {
   var btn = e.target;
   while (btn && btn !== this) {
-    if (btn.classList && btn.classList.contains('opt') && btn.hasAttribute('data-step')) break;
+    if (btn.tagName === 'BUTTON' && btn.classList.contains('opt') && btn.hasAttribute('data-step')) break;
     btn = btn.parentElement;
+    if (!btn) return;
   }
-  if (!btn || !btn.classList.contains('opt')) return;
+  if (!btn || btn === this || !btn.classList.contains('opt')) return;
 
   var step = parseInt(btn.getAttribute('data-step'), 10);
   var value = btn.getAttribute('data-value');
@@ -596,7 +726,13 @@ document.querySelector('.card').addEventListener('click', function(e) {
     buildOccasions(value);
     setTimeout(function() { goToStep(1); }, 180);
   } else if (step === 1) {
-    setTimeout(function() { goToStep(2); }, 180);
+    // Newborns skip the occasion step — default to new-arrival
+    if (answers[0] === 'newborn') {
+      answers[2] = 'new-arrival';
+      setTimeout(showResults, 180);
+    } else {
+      setTimeout(function() { goToStep(2); }, 180);
+    }
   } else if (step === 2) {
     setTimeout(showResults, 180);
   }
