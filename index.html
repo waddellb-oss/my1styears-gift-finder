@@ -59,7 +59,7 @@ body {
 
 /* ── CARD ── */
 .card {
-  background: white;
+  background: #FFFFFF;
   border-radius: 16px;
   width: 100%;
   max-width: 420px;
@@ -143,6 +143,7 @@ body {
 }
 /* Grid opts fill their column; flex opts size to content */
 .options:not(.flex) .opt { width: 100%; }
+.options.flex .opt { padding: 8px 14px; font-size: 0.78rem; }
 .opt:hover { border-color: #5BB5A2; background: #F0FAF8; }
 .opt.sel   { background: #5BB5A2; border-color: #5BB5A2; color: white; }
 .opt-icon  { font-size: 0.95rem; flex-shrink: 0; }
@@ -313,7 +314,7 @@ body {
     <div class="step" id="step-1">
       <button class="btn-back" onclick="goToStep(0)">← Back</button>
       <div class="step-q">What's your relationship to them?</div>
-      <div class="options flex">
+      <div class="options">
         <button class="opt" data-step="1" data-value="parent">Parent</button>
         <button class="opt" data-step="1" data-value="grandparent">Grandparent</button>
         <button class="opt" data-step="1" data-value="aunt-uncle">Aunt / Uncle</button>
@@ -327,7 +328,7 @@ body {
     <div class="step" id="step-2">
       <button class="btn-back" onclick="goToStep(1)">← Back</button>
       <div class="step-q">What's the occasion?</div>
-      <div class="options flex" id="occasionOptions"></div>
+      <div class="options" id="occasionOptions"></div>
     </div>
 
     <!-- Results -->
