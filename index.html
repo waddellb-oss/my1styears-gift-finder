@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Gift Finder — My 1st Years</title>
 
 <!-- Open Graph / LinkedIn -->
@@ -22,6 +23,7 @@ body {
   background: #FAF8F5;
   min-height: 100vh;
   margin: 0;
+  color-scheme: light;
 }
 
 /* ── MOCK SITE ── */
@@ -30,17 +32,21 @@ body {
   font-size: 0.72rem; letter-spacing: 0.08em; padding: 9px 20px; font-weight: 500;
 }
 .site-header {
-  background: white; border-bottom: 1px solid #EDE8E0;
-  padding: 14px 40px; display: flex; align-items: center; justify-content: space-between;
+  background: #FFFFFF; border-bottom: 1px solid #EDE8E0;
+  padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+  color-scheme: light; gap: 12px;
 }
 .site-logo-circle {
-  width: 42px; height: 42px; background: #5BB5A2; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+  width: 42px; height: 42px; min-width: 42px;
+  aspect-ratio: 1 / 1;
+  background: #5BB5A2; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: white; overflow: hidden; flex-shrink: 0;
 }
 .site-logo-my  { font-size: 0.85rem; font-weight: 500; line-height: 1; }
 .site-logo-sub { font-size: 0.44rem; font-weight: 300; letter-spacing: 0.06em; line-height: 1.2; }
-.site-nav { display: flex; gap: 28px; }
-.site-nav a { font-size: 0.8rem; color: #3A3530; text-decoration: none; }
+.site-nav { display: flex; gap: 16px; flex-wrap: nowrap; overflow: hidden; }
+.site-nav a { font-size: 0.75rem; color: #3A3530; text-decoration: none; white-space: nowrap; }
 .site-page { padding: 40px; }
 .site-page h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #3A3530; margin-bottom: 20px; }
 .mock-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
@@ -68,6 +74,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(43,38,34,0.12);
+  color-scheme: light;
 }
 .card-body {
   padding: 14px 20px 20px;
@@ -271,7 +278,10 @@ body {
 <!-- Mock site background -->
 <div class="site-bar">Free Luxury Gift Box on all orders &nbsp;·&nbsp; Next Day Delivery available &nbsp;·&nbsp; Personalisation, it's kind of our thing</div>
 <div class="site-header">
-  <div class="site-logo-circle"><span class="site-logo-my">MY</span><span class="site-logo-sub">1st years</span></div>
+  <div style="width:42px;height:42px;min-width:42px;border-radius:50%;background:#5BB5A2;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;flex-shrink:0;overflow:hidden">
+    <span style="font-size:0.85rem;font-weight:500;line-height:1">MY</span>
+    <span style="font-size:0.44rem;font-weight:300;letter-spacing:0.06em;line-height:1.2">1st years</span>
+  </div>
   <div class="site-nav"><a href="#">Baby</a><a href="#">Kids</a><a href="#">Gift Sets</a><a href="#">Occasions</a><a href="#">Sale</a></div>
 </div>
 <div class="site-page">
