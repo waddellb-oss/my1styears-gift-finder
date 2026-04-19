@@ -10,8 +10,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Personalised Gift Finder — My 1st Years">
 <meta property="og:description" content="Answer 3 quick questions and get personalised gift recommendations for babies and children — from one of the UK's most loved personalised gift brands.">
-<meta property="og:image" content="https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/cache/6d8e41e98cbb1c031bf3bc2f71c0a169/5/0/50112562teddy-bear-plush-toy-a.webp">
-<meta property="og:url" content="https://yourusername.github.io/my1styears-gift-finder">
+<meta property="og:image" content="https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/5/0/50112562-teddy-bear-plush-toy-model.webp">
+<meta property="og:url" content="https://waddellb-oss.github.io/my1styears-gift-finder/">
 <meta name="description" content="Answer 3 quick questions and get personalised gift recommendations for babies and children — from one of the UK's most loved personalised gift brands.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -36,15 +36,6 @@ body {
   padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
   color-scheme: light; gap: 12px;
 }
-.site-logo-circle {
-  width: 42px; height: 42px; min-width: 42px;
-  aspect-ratio: 1 / 1;
-  background: #5BB5A2; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  color: white; overflow: hidden; flex-shrink: 0;
-}
-.site-logo-my  { font-size: 0.85rem; font-weight: 500; line-height: 1; }
-.site-logo-sub { font-size: 0.44rem; font-weight: 300; letter-spacing: 0.06em; line-height: 1.2; }
 .site-nav { display: flex; gap: 16px; flex-wrap: nowrap; overflow: hidden; }
 .site-nav a { font-size: 0.75rem; color: #3A3530; text-decoration: none; white-space: nowrap; }
 .site-page { padding: 40px; }
@@ -153,7 +144,6 @@ body {
 .options.flex .opt { padding: 8px 14px; font-size: 0.78rem; }
 .opt:hover { border-color: #5BB5A2; background: #F0FAF8; }
 .opt.sel   { background: #5BB5A2; border-color: #5BB5A2; color: white; }
-.opt-icon  { font-size: 0.95rem; flex-shrink: 0; }
 
 /* ── RESULTS ── */
 #step-results { display: none; }
@@ -386,34 +376,34 @@ var answers = {};
 
 var occasionsByAge = {
   newborn: [
-    { v:'new-arrival', icon:'👶', label:'New Arrival' },
-    { v:'birthday',    icon:'🎂', label:'Birthday' },
-    { v:'christmas',   icon:'🎄', label:'Christmas' },
-    { v:'just-because',icon:'🌿', label:'Just Because' }
+    { v:'new-arrival', label:'New Arrival' },
+    { v:'birthday', label:'Birthday' },
+    { v:'christmas', label:'Christmas' },
+    { v:'just-because', label:'Just Because' }
   ],
   baby: [
-    { v:'1st-birthday',  icon:'🎂', label:'1st Birthday' },
-    { v:'christening',   icon:'✝️', label:'Christening' },
-    { v:'christmas',     icon:'🎄', label:'Christmas' },
-    { v:'just-because',  icon:'🌿', label:'Just Because' }
+    { v:'1st-birthday', label:'1st Birthday' },
+    { v:'christening', label:'Christening' },
+    { v:'christmas', label:'Christmas' },
+    { v:'just-because', label:'Just Because' }
   ],
   toddler: [
-    { v:'birthday',     icon:'🎂', label:'Birthday' },
-    { v:'christmas',    icon:'🎄', label:'Christmas' },
-    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
-    { v:'just-because', icon:'🌿', label:'Just Because' }
+    { v:'birthday', label:'Birthday' },
+    { v:'christmas', label:'Christmas' },
+    { v:'new-sibling', label:'New Sibling' },
+    { v:'just-because', label:'Just Because' }
   ],
   child: [
-    { v:'birthday',     icon:'🎂', label:'Birthday' },
-    { v:'christmas',    icon:'🎄', label:'Christmas' },
-    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
-    { v:'just-because', icon:'🌿', label:'Just Because' }
+    { v:'birthday', label:'Birthday' },
+    { v:'christmas', label:'Christmas' },
+    { v:'new-sibling', label:'New Sibling' },
+    { v:'just-because', label:'Just Because' }
   ],
   older: [
-    { v:'birthday',     icon:'🎂', label:'Birthday' },
-    { v:'christmas',    icon:'🎄', label:'Christmas' },
-    { v:'new-sibling',  icon:'👶', label:'New Sibling' },
-    { v:'just-because', icon:'🌿', label:'Just Because' }
+    { v:'birthday', label:'Birthday' },
+    { v:'christmas', label:'Christmas' },
+    { v:'new-sibling', label:'New Sibling' },
+    { v:'just-because', label:'Just Because' }
   ]
 };
 
@@ -462,7 +452,7 @@ var popularTags = { low: 'Best Seller', mid: 'Luxury Keepsake', high: 'Showstopp
 var catalogue = [
   // ── LOW TIER (under £30) ──
   { name:'Classic Teddy Bear',              tag:'Best Seller',      price:'£29', tier:'low',  emoji:'🧸', bg:'#F5EEE8',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/5/0/50112562teddy-bear-plush-toy-a.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/5/0/50112562-teddy-bear-plush-toy-model.webp',
     ages:['newborn','baby','toddler','child'],        occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','just-because','christmas'],
     url:'https://www.my1styears.com/personalised-classic-teddy-bear-plush-toy.html' },
   { name:'Grey Hooded Fleece Robe',         tag:'Wardrobe Staple',  price:'£25', tier:'low',  emoji:'🩶', bg:'#EEEEEE',
@@ -470,23 +460,23 @@ var catalogue = [
     ages:['newborn','baby','toddler','child','older'], occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-grey-hooded-fleece-robe.html' },
   { name:'Penguin Fleece Robe',             tag:'Fan Favourite',    price:'£32', tier:'low',  emoji:'🐧', bg:'#EBF0F5',
-    img:'https://www.my1styears.com/media/catalog/product/s/e/se_30110277penguin-robe-model-1.jpg',
+    img:'https://www.my1styears.com/media/catalog/product/s/e/se_30110277_penguin-robe-1.jpg',
     ages:['newborn','baby','toddler','child','older'], occasions:['birthday','christmas','just-because','new-arrival'],
     url:'https://www.my1styears.com/personalised-penguin-fleece-robe.html' },
   { name:'Welly Boots',                     tag:'Personalised',     price:'£28', tier:'low',  emoji:'🥾', bg:'#EEF5EE',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30112049core-pink-spot-rubber-welly-_hero_-_model_.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30112049core_pink_spot_rubber_welly_hero_b.webp',
     ages:['toddler','child','older'],          occasions:['birthday','just-because','christmas'],
     url:'https://www.my1styears.com/personalised-pink-spot-welly-boots.html' },
   { name:'Dinosaur Pencil Case',            tag:'School Essential', price:'£17', tier:'low',  emoji:'✏️', bg:'#EEF5EE',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_50110188grey-dino-backpack-_2023-price_-a.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/5/0/50112527-colour-block-pencil-case-grey---dino-2.webp',
     ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
     url:'https://www.my1styears.com/back-to-school/shop-by-product/pencil-cases-stationery.html' },
   { name:'Ditsy Print Mini Backpack',       tag:'Bestseller',       price:'£23', tier:'low',  emoji:'🌸', bg:'#F5EBF0',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_25662_ditsy-backpack-model.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_25662_ditsy-backpack-a.webp',
     ages:['toddler','child'],                  occasions:['birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-ditsy-print-mini-backpack.html' },
   { name:'Dinosaur Mini Backpack',          tag:'Boys Favourite',   price:'£28', tier:'low',  emoji:'🦕', bg:'#EEF5EE',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_50110188grey-dino-backpack-_2023-price_-a.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_50110188-grey-dino-backpack-_2023-price_-model.webp',
     ages:['toddler','child','older'],          occasions:['birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-dinosaur-print-mini-backpack.html' },
   { name:'Teddy Bear Hooded Towel',         tag:'New In',           price:'£25', tier:'low',  emoji:'🛁', bg:'#EBF4F2',
@@ -498,7 +488,7 @@ var catalogue = [
     ages:['newborn','baby','toddler','child'], occasions:['birthday','christmas','just-because','new-arrival'],
     url:'https://www.my1styears.com/personalised-flower-fleece-robe.html' },
   { name:'Personalised Water Bottle',       tag:'School Essential', price:'£23', tier:'low',  emoji:'💧', bg:'#EBF4F2',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_50112049core-pink-spot-rubber-welly-_hero_-_model_.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/4/0/40112104_neutral-water-bottle---lion-2.webp',
     ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
     url:'https://www.my1styears.com/personalised-back-to-school/shop-by-product/water-bottles.html' },
   { name:'Welcome to the World Book',    tag:'Keepsake Book',    price:'£10', tier:'low',  emoji:'📖', bg:'#F4F0E8',
@@ -520,7 +510,7 @@ var catalogue = [
 
   // ── MID TIER (£30–£65) ──
   { name:'Reindeer Fleece Robe',            tag:'Christmas Pick',   price:'£31', tier:'mid',  emoji:'🦌', bg:'#F5F0E8',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_10110142reindeer-robe-a_2.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_10110142reindeer-robe-b_2.webp',
     ages:['newborn','baby','toddler','child','older'], occasions:['christmas'],
     url:'https://www.my1styears.com/personalised-reindeer-robe-with-red-nose.html' },
   { name:'Grey Quilted Backpack',           tag:'Most Loved',       price:'£30', tier:'mid',  emoji:'🎒', bg:'#EEEEEE',
@@ -528,7 +518,7 @@ var catalogue = [
     ages:['child','older'],                    occasions:['birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-grey-quilted-medium-backpack.html' },
   { name:'Bluey Backpack',                  tag:'Licensed',         price:'£35', tier:'mid',  emoji:'🐾', bg:'#E8F0F8',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30111839_bluey_backpack_1.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30111839_bluey_backpack_2.webp',
     ages:['toddler','child'],                  occasions:['birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-bluey-backpack.html' },
   { name:'Large Graffiti Backpack',         tag:'Cool Kid',         price:'£43', tier:'mid',  emoji:'🎨', bg:'#F0EBF5',
@@ -536,11 +526,11 @@ var catalogue = [
     ages:['child','older'],                    occasions:['birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-large-grey-quilted-varsity-backpack.html' },
   { name:'Back to School Starter Set',      tag:'Gift Set',         price:'£55', tier:'mid',  emoji:'🏫', bg:'#EEF5F0',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_50112049core-pink-spot-rubber-welly-_hero_-_model_.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/4/0/40112074safari-waterbottle-b.webp',
     ages:['child','older'],                    occasions:['birthday','just-because'],
     url:'https://www.my1styears.com/back-to-school/shop-by-product/back-to-school-sets.html' },
   { name:'Robe & Towel Gift Set',           tag:'Gift Set',         price:'£44', tier:'mid',  emoji:'🩷', bg:'#F5EBF2',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/i/g/ig80111525_teddy-bear-splash-_-snuggle-giftset-1.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/i/g/ig80111525_teddy-bear-splash-_-snuggle-giftset-2.webp',
     ages:['newborn','baby','toddler'],         occasions:['new-arrival','new-sibling','1st-birthday','christening','birthday','christmas','just-because'],
     url:'https://www.my1styears.com/personalised-borg-bear-splash-and-snuggle-gift-set.html' },
   { name:'Embroidered Memory Box',          tag:'Keepsake',         price:'£44', tier:'mid',  emoji:'💌', bg:'#F4F0E8',
@@ -552,7 +542,7 @@ var catalogue = [
     ages:['newborn','baby','toddler','child','older'], occasions:['christmas'],
     url:'https://www.my1styears.com/personalised-christmas-pyjamas-robe-set.html' },
   { name:'Safari Print Welly Boots',        tag:'Personalised',     price:'£27', tier:'mid',  emoji:'🦒', bg:'#F5F2E8',
-    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30112103-pink-safari-aop-rubber-welly-_hero_-_model_.webp',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30112103pink-safari-aop-rubber-welly-_hero_--a.webp',
     ages:['toddler','child'],                  occasions:['birthday','just-because','christmas'],
     url:'https://www.my1styears.com/personalised-pink-safari-print-welly-boots.html' },
   { name:'Wooden Alphabet Abacus',          tag:'Educational Toy',  price:'£46', tier:'mid',  emoji:'🔤', bg:'#F5F0E8',
@@ -590,7 +580,7 @@ var catalogue = [
     ages:['toddler','child'],                  occasions:['birthday','christmas','just-because','new-arrival','new-sibling'],
     url:'https://www.my1styears.com/personalised-biscuit-bear-white-toy-box.html' },
   { name:'Ultimate Back to School Set',     tag:'Showstopper',      price:'£85',  tier:'high', emoji:'🎒', bg:'#EEF5F0',
-    img:'https://www.my1styears.com/media/catalog/product/4/0/40114082_my_kids_large_grey_backpack_simple_name_1.jpg',
+    img:'https://www.my1styears.com/media/mf_webp/jpg/media/catalog/product/s/e/se_30110910_my_kids_large_grey_backpack_pink_varisty_2.webp',
     ages:['child','older'],                    occasions:['birthday','just-because','christmas'],
     url:'https://www.my1styears.com/back-to-school/shop-by-product/back-to-school-sets.html' },
   { name:'Silver Engraved Baby Bangle',     tag:'Keepsake Jewellery', price:'£70', tier:'high', emoji:'💍', bg:'#F5F0E8',
