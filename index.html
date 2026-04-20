@@ -418,19 +418,19 @@ var ageLabels = {
 
 // Occasion labels for context line
 var occasionLabels = {
-  'new-arrival':  'your new arrival',
-  'new-sibling':  'a new sibling',
-  '1st-birthday': 'a 1st birthday',
-  'christening':  'a christening',
-  'birthday':     'a birthday',
+  'new-arrival':  'New arrival',
+  'new-sibling':  'New sibling',
+  '1st-birthday': '1st birthday',
+  'christening':  'Baby christening',
+  'birthday':     'Birthday',
   'christmas':    'Christmas',
-  'just-because': 'no occasion needed'
+  'just-because': 'Just because'
 };
 
 var relationshipLines = {
   'parent':      'Chosen just for them — each can be <strong>personalised with your little one\'s name</strong>.',
   'grandparent': 'A little something to treasure — each can be <strong>personalised with their name</strong>.',
-  'godparent':   'A keepsake they\'ll treasure forever — each can be <strong>personalised with their name</strong>.',
+  'godparent':   'A keepsake they\'ll treasure — each can be <strong>personalised with their name</strong>.',
   'aunt-uncle':  'From the best aunt or uncle around — each can be <strong>personalised with their name</strong>.',
   'friend':      'Something thoughtful they won\'t expect — each can be <strong>personalised with their name</strong>.',
   'other':       'Each can be <strong>personalised with their name</strong> — wrapped in a free luxury gift box.'
@@ -707,7 +707,11 @@ function showResults() {
   var ageLabel = ageLabels[age] || 'them';
   var occLabel = occasionLabels[occ] || '';
   var contextText = occLabel
-    ? occLabel.charAt(0).toUpperCase() + occLabel.slice(1) + ' gifts for ' + ageLabel
+    ? (occ === 'new-arrival'
+        ? occLabel + ' gifts'
+        : occ === 'christening'
+          ? occLabel + ' gifts'
+          : occLabel.charAt(0).toUpperCase() + occLabel.slice(1) + ' gifts for ' + ageLabel)
     : 'Gifts for ' + ageLabel;
   document.getElementById('resultsContext').textContent = contextText;
 
@@ -717,7 +721,7 @@ function showResults() {
   document.getElementById('resultsSub').innerHTML = line;
 
   // Personalised email panel copy
-  var occ2 = occasionLabels[answers[2]] || 'gift';
+  var occ2 = (occasionLabels[answers[2]] || 'gift').toLowerCase();
   var ageShort = { newborn:'newborns', baby:'babies', toddler:'toddlers', child:'little ones', older:'big kids' }[age] || 'little ones';
   document.getElementById('emailPanelSub').textContent =
     'We\'ll send you ' + occ2 + ' gift ideas for ' + ageShort + ', seasonal edits and exclusive offers.';
